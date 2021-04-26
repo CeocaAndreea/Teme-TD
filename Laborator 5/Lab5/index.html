@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <title>Baseband Encoder</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+  <body>
+    <div id="baseband-encoder">
+      <ul v-for="(bit, index) in bits">
+        <li>
+          <input
+            v-on:change="encode()"
+            maxlength="1"
+            :placeholder="'B'+index"
+            v-model="bit.value"
+            v-bind:class="[validateBit(bit.value) ? ' valid-input ' : 'invalid-input']"
+          />
+        </li>
+      </ul>
+      <p>Bitstream data model:<code>{{bits}}</code></p>
+      <p>
+        Baseband code representation:
+        <code class="encoded">{{encodedBits.join('')}}</code>
+      </p>
+      <p>
+        NRZ-L:
+        <code class="encoded">{{encodedNrz_LBits.join('')}}</code>
+      </p>
+      <p>
+        NRZ-M:
+        <code class="encoded">{{encodedNrz_MBits.join('')}}</code>
+      </p>
+      <p>
+        NRZ-S:
+        <code class="encoded">{{encodedNrz_SBits.join('')}}</code>
+      </p>
+      <p>
+        RZ-Unipolar:
+        <code class="encoded">{{encodedRZUnipolarBits.join('')}}</code>
+      </p>
+      <p>
+        Biphase-Level:
+        <code class="encoded">{{encodedBiphaseLevelBits.join('')}}</code>
+      </p>
+      <p>
+        Biphase-Mark:
+        <code class="encoded">{{encodedBiphaseMarkBits.join('')}}</code>
+      </p>
+      <p>
+        Biphase-Space:
+        <code class="encoded">{{encodedBiphaseSpaceBits.join('')}}</code>
+      </p>
+      <p>
+        AMI:
+        <code class="encoded">{{encodedAMIBits.join('')}}</code>
+      </p>
+    </div>
+    <script type="text/javascript" src="libs/vue.js"></script>
+    <script type="text/javascript" src="libs/axios.js"></script>
+    <script type="text/javascript" src="js/helpers.js"></script>
+    <script type="text/javascript" src="js/baseband-codes.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+  </body>
+</html>
